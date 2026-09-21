@@ -43,7 +43,6 @@ import {
   SiHuggingface,
   SiGooglecloud,
   SiPython,
-  SiTypescript,
   SiMongodb,
   SiNextdotjs,
   SiReact,
@@ -53,12 +52,10 @@ import {
   SiTensorflow,
   SiPytorch,
   SiGit,
-  SiKubernetes,
-  SiJira,
-  SiConfluence,
 } from '@icons-pack/react-simple-icons';
 
-import { SiGithub, SiLinkerd } from '@icons-pack/react-simple-icons';
+import { SiGithub } from '@icons-pack/react-simple-icons';
+import { FaLinkedin } from 'react-icons/fa';
 
 type IconComponent = ComponentType<{
   size?: number | string;
@@ -81,62 +78,87 @@ type Certification = {
   title: string;
   issuer: string;
   description: string;
-  url: string;
+  url?: string;
   icon: IconComponent;
 };
 
+type Achievement = {
+  title: string;
+  issuer: string;
+  description: string;
+  icon: IconComponent;
+};
+
+/* =========================================================
+   PROJECTS
+   ========================================================= */
+
 const projects: Project[] = [
   {
-    category: 'Google Cloud Project — Virtusa',
+    category: 'Enterprise Agentic AI — Virtusa',
     title: 'SLA Breach Alerting System',
     role: 'Associate Engineer — AI/ML',
     summary:
-      'Build an enterprise-scale Agentic AI platform that proactively identifies SLA breach risks across Google Cloud cases and automatically generates intelligent risk alerts and recommendations.',
+      'Enterprise-scale Agentic AI platform that proactively identifies SLA breach risks across Google Cloud support cases and generates actionable risk alerts and recommendations.',
     tags: [
       'Python',
       'Google ADK',
       'Vertex AI',
       'Vertex AI Agent Engine',
       'RAG',
-      'Google Cloud',
+      'Vertex AI Vector Search',
+      'Cloud DLP',
       'Gmail',
       'Google Chat',
       'LLM',
       'Agentic AI',
     ],
     details: [
-      'Architected and deployed an enterprise-scale Agentic AI platform using Google ADK, Vertex AI Agent Engine, and Google Cloud to proactively identify SLA breach risks across Google Cloud cases.',
-      'Implemented a knowledge-grounded RAG pipeline combining enterprise knowledge-base articles with contextual case data to generate root-cause analysis and next-best-action recommendations.',
-      'Integrated Gmail and Google Chat notifications for real-time risk escalation alerts, significantly reducing manual monitoring effort and improving turnaround time.',
-      'The solution reduced escalations by approximately 70–80% and improved customer satisfaction.',
+      'Architected and deployed an enterprise-scale Agentic AI platform using Google ADK and Vertex AI Agent Engine to proactively flag at-risk Google Cloud support cases before SLA breach.',
+      'Implemented a knowledge-grounded RAG pipeline using enterprise knowledge and contextual case information to generate actionable hard-risk and soft-risk recommendations.',
+      'Integrated Vertex AI Vector Search and retrieval evaluation to improve knowledge-grounded responses and reduce average issue-resolution time.',
+      'Implemented Cloud DLP, encryption/decryption tool callbacks, and Responsible AI guardrails to prevent PII exposure and block prompt-injection and jailbreak attempts.',
+      'Automated real-time Gmail and Google Chat notifications to surface critical risks, escalation signals, and next-best actions to case owners.',
+      'Productionized the platform using CI/CD pipelines, fault-tolerant retry mechanisms, and cloud-native deployment practices.',
     ],
-    metrics: ['70–80% reduction in escalations'],
+    metrics: [
+      '70–80% reduction in SLA breach-driven escalations',
+      'Zero PII-exposure incidents',
+    ],
     accent: 'mint',
     icon: Cloud,
   },
 
   {
-    category: 'Agentic AI Project — Virtusa',
-    title: 'Agentic SDLC Automation Platform',
+    category: 'Agentic AI — Virtusa',
+    title: 'Agentic AI Platform for Accounts Payable',
     role: 'Associate Engineer — AI/ML',
     summary:
-      'Built a multi-agent SDLC automation platform that transforms natural-language user stories into production-ready microservices and automatically generates test cases.',
+      'Stateful multi-agent platform designed to automate complex invoice processing workflows including document analysis, validation, risk assessment, and payment decisions.',
     tags: [
       'Python',
       'LangGraph',
       'Multi-Agent AI',
       'LLM',
-      'Agentic AI',
-      'Microservices',
-      'Automated Test Generation',
-      'SDLC Automation',
+      'PyMuPDF',
+      'pdfplumber',
+      'Risk Scoring',
+      'HITL',
+      'Dynamic Routing',
+      'Checkpointing',
     ],
     details: [
-      'Developed a multi-agent SDLC automation platform using LangGraph.',
-      'Designed the workflow to convert natural-language user stories into production-ready microservices.',
-      'Supported generation across multiple programming languages.',
-      'Implemented automated test-case generation from requirements, improving test coverage and accelerating software delivery.',
-      'Focused on automating multiple stages of the software development lifecycle using agentic workflows.',
+      'Designed stateful multi-agent workflows in LangGraph with dynamic routing, checkpointing, and conditional execution.',
+      'Created specialized workflows for document analysis, invoice validation, risk assessment, and payment decisions.',
+      'Built a hybrid document-extraction pipeline using PyMuPDF, pdfplumber, and LLM-based fallback parsing.',
+      'Achieved approximately 95% structured-data extraction accuracy across diverse invoice formats.',
+      'Implemented vendor-history-driven risk scoring to identify potential fraud and anomalies before payment routing.',
+      'Architected configurable business rules and Human-in-the-Loop approval workflows for high-risk transactions.',
+      'Worked with finance stakeholders to balance automation with manual review and improve auditability and compliance.',
+    ],
+    metrics: [
+      '~40% reduction in manual processing time',
+      '~95% structured-data extraction accuracy',
     ],
     accent: 'cyan',
     icon: Network,
@@ -177,18 +199,18 @@ const projects: Project[] = [
   },
 
   {
-    category: 'Machine Learning Project',
-    title: 'BERT-Based Sentiment Analysis & AWS Deployment',
+    category: 'Machine Learning & AWS',
+    title: 'Ticket Classification and AWS Deployment',
     role: 'ML Engineer',
     summary:
-      'Built and deployed an end-to-end NLP sentiment analysis system comparing a TF-IDF + Linear SVM baseline with a fine-tuned BERT model and productionized the inference service on AWS SageMaker.',
+      'End-to-end NLP ticket-classification system comparing traditional machine-learning baselines with fine-tuned BERT and productionizing the inference service on AWS SageMaker.',
     tags: [
       'Python',
       'NLP',
       'BERT',
       'Hugging Face',
       'TF-IDF',
-      'Linear SVM',
+      'XGBoost',
       'Docker',
       'FastAPI',
       'Amazon SageMaker',
@@ -197,200 +219,184 @@ const projects: Project[] = [
       'AWS',
     ],
     details: [
-      'Built an end-to-end NLP sentiment analysis system comparing a traditional TF-IDF + Linear SVM baseline with a fine-tuned BERT model.',
-      'Fine-tuned BERT for sentiment classification and achieved approximately 95% F1-score.',
-      'The TF-IDF + Linear SVM baseline achieved approximately 90% accuracy.',
+      'Built an end-to-end NLP system comparing TF-IDF and traditional machine-learning baselines against a fine-tuned BERT model.',
+      'Used feature engineering and XGBoost optimization for model selection.',
+      'Improved ticket-classification accuracy to approximately 92%.',
       'Containerized the inference service using Docker and FastAPI.',
-      'Stored model artifacts in Amazon S3.',
-      'Built and pushed the Docker image to Amazon ECR.',
-      'Deployed the real-time inference service as an Amazon SageMaker endpoint for low-latency sentiment prediction.',
-      'Complete ML lifecycle: model development, fine-tuning, containerization, artifact storage, container registry, cloud deployment, and real-time inference.',
+      'Stored model artifacts in Amazon S3 and pushed Docker images to Amazon ECR.',
+      'Deployed the real-time inference service using Amazon SageMaker.',
+      'Delivered a low-latency production inference endpoint.',
     ],
-    metrics: ['95% BERT F1-score', '90% SVM accuracy'],
+    metrics: ['~92% ticket-classification accuracy'],
     accent: 'orange',
     icon: Rocket,
   },
 ];
 
-type Achievement = {
-  title: string;
-  issuer: string;
-  description: string;
-  icon: IconComponent;
-};
+/* =========================================================
+   ACHIEVEMENTS
+   ========================================================= */
 
 const achievements: Achievement[] = [
   {
-    title: 'Winner — Agentic AI Engineer Hackathon',
+    title: 'First Runner-Up — Agentic AI Hackathon',
     issuer: 'Virtusa',
     description:
-      'Won the Agentic AI Engineer Hackathon by building AI-Startup Evaluation Project',
+      'Designed and shipped a full-stack AI application using FastAPI and React.js, integrating AI-powered document and voice intelligence through Vision API-based OCR and Speech-to-Text capabilities.',
     icon: Trophy,
-  },
-  {
-    title: 'Outstanding Performer of the Batch',
-    issuer: 'Virtusa',
-    description:
-      'Recognized as an Outstanding Performer of the Batch for demonstrating strong technical performance and delivering impactful AI engineering solutions.',
-    icon: Award,
   },
 ];
 
+/* =========================================================
+   CERTIFICATIONS
+   ========================================================= */
+
 const certifications: Certification[] = [
   {
-    title: 'Generative AI Leader Certification',
+    title: 'Google Cloud Certified Professional Machine Learning Engineer',
     issuer: 'Google Cloud',
     description:
-      'Credential recognizing practical understanding of Generative AI capabilities and applications.',
-    url: 'https://www.credly.com/badges/1392733b-aee3-4d4b-abfe-88693d4981c1/linked_in_profile',
+      'Professional certification covering machine learning solution design, development, deployment, and operationalization on Google Cloud.',
+    url:'https://www.credly.com/badges/eaa53729-427c-4483-98f8-f24ceb8d5870/linked_in_profile',
     icon: BrainCircuit,
+  },
+
+  {
+    title: 'Google Cloud Certified Associate Cloud Engineer',
+    issuer: 'Google Cloud',
+    description:
+      'Certification covering deployment, management, and operations of cloud solutions on Google Cloud.',
+    url:'https://www.credly.com/badges/1a107573-cc72-4630-93f0-5defdd73a010/linked_in_profile',
+    icon: Cloud,
+  },
+
+  {
+    title: 'Google Generative AI Leader Certification',
+    issuer: 'Google Cloud',
+    description:
+      'Certification focused on Generative AI concepts, capabilities, applications, and business use cases.',
+    url:'https://www.credly.com/badges/3f75be29-9f44-4b95-80e9-2653844341b8/linked_in_profile',
+    icon: Brain,
+  },
+
+  {
+    title: 'Microsoft Certified: Azure Fundamentals',
+    issuer: 'Microsoft',
+    description:
+      'Foundational certification covering Fundamental concepts and Azure services.',
+    url:'https://www.credly.com/badges/3bd41d95-c099-471e-941b-f5cdb87c26c8/linked_in_profile',
+    icon: Cpu,
   },
 
   {
     title: 'AWS Certified AI Practitioner',
     issuer: 'AWS',
     description:
-      'Certification validating foundational knowledge of AI and machine learning on AWS.',
-    url: 'https://www.credly.com/badges/b27cfdee-6e8b-41d3-a97f-3a1088b8ba7d/linked_in_profile',
+      'Certification covering foundational artificial intelligence and machine-learning concepts and AWS AI capabilities.',
+    url:'https://www.credly.com/badges/8c214bc5-b48d-4202-990b-b065c52e62be/linked_in_profile',
     icon: Cloud,
   },
-
-  {
-    title: 'Associate Cloud Engineer Certification',
-    issuer: 'Google Cloud',
-    description:
-      'Credential demonstrating cloud deployment and operations fundamentals.',
-    url: 'https://www.credly.com/badges/a38d01b3-b672-436d-b444-5c4ecb2c1dd4/linked_in_profile',
-    icon: Cloud,
-  },
-    {
-    title: 'Microsoft Certified: Azure AI Fundamentals',
-    issuer: 'Microsoft Azure',
-    description:
-      'Foundational certification for artificial intelligence concepts and Azure AI services.',
-    url: 'https://learn.microsoft.com/api/credentials/share/en-in/PulletiSaiSirisha-3223/11CC541524E14836?sharingId=EAFFBE2C474AFD6C',
-    icon: Cloud,
-  },
-
-  {
-    title: 'Microsoft Certified: Azure Fundamentals',
-    issuer: 'Microsoft Azure',
-    description:
-      'Foundational knowledge of cloud concepts, Azure services, security, and governance.',
-    url: 'https://learn.microsoft.com/api/credentials/share/en-in/PulletiSaiSirisha-3223/7378CEF86578CC72?sharingId=EAFFBE2C474AFD6C',
-    icon: Cloud,
-  }
 ];
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
 
 const skillGroups = [
   {
-    title: 'Gen AI & Agentic AI Frameworks',
+    title: 'Agentic AI Frameworks',
     skills: [
-      { name: 'Google ADK', icon: SiGoogle },
       { name: 'LangChain', icon: SiLangchain },
       { name: 'LangGraph', icon: SiLanggraph },
       { name: 'CrewAI', icon: SiCrewai },
-
-      // No reliable Simple Icon export in your installed package
+      { name: 'Google ADK', icon: SiGoogle },
       { name: 'LlamaIndex', icon: Database },
-      { name: 'AutoGen', icon: Bot },
-      { name: 'Multimodal RAG', icon: Eye },
-      { name: 'Prompt Engineering', icon: WandSparkles },
+      { name: 'MCP', icon: Network },
+      { name: 'A2A Protocol', icon: Network },
     ],
   },
 
   {
-    title: 'LLMs & Vector DBs',
+    title: 'AI / ML & Generative AI',
     skills: [
-      // SiOpenai is unavailable in your installed package
-      { name: 'OpenAI', icon: BrainCircuit },
-
-      { name: 'Google Gemini', icon: SiGooglegemini },
-      { name: 'HuggingFace Embeddings', icon: SiHuggingface },
-
-      { name: 'FAISS', icon: Database },
-
-      // SiPinecone is unavailable in your installed package
-      { name: 'Pinecone', icon: Database },
-
-      { name: 'ChromaDB', icon: Database },
-    ],
-  },
-
-  {
-    title: 'Cloud & Deployments',
-    skills: [
-      { name: 'Google Cloud Platform (GCP)', icon: SiGooglecloud },
-
-      // Use Lucide because Google Vertex AI export is unavailable
-      { name: 'Vertex AI', icon: Cpu },
-
-      { name: 'Cloud Run', icon: Cloud },
-
-      { name: 'Model Armor & DLP', icon: ShieldCheck },
-
-      { name: 'Gemini Enterprise', icon: SiGooglegemini },
-
-      { name: 'AWS Bedrock', icon: Cloud },
-
-      { name: 'AWS SageMaker', icon: Server },
-    ],
-  },
-
-  {
-    title: 'Programming & Databases',
-    skills: [
-      { name: 'Python', icon: SiPython },
-
-      // You can keep Simple Icons here
-      { name: 'C#', icon: SiTypescript },
-
-      { name: 'MongoDB', icon: SiMongodb },
-
-      { name: 'SQL', icon: Database },
-    ],
-  },
-
-  {
-    title: 'Frontend & UI Integration',
-    skills: [
-      { name: 'Node.js', icon: SiNextdotjs },
-      { name: 'React.js', icon: SiReact },
-      { name: 'Streamlit', icon: SiStreamlit },
-      { name: 'Flask', icon: SiFlask },
-      { name: 'FastAPI', icon: Server },
-    ],
-  },
-
-  {
-    title: 'Data Processing & ML',
-    skills: [
-      { name: 'Scikit-learn', icon: SiScikitlearn },
-      { name: 'TensorFlow', icon: SiTensorflow },
       { name: 'Machine Learning', icon: Brain },
       { name: 'Deep Learning', icon: SiPytorch },
-      { name: 'Computer Vision', icon: Eye },
       { name: 'NLP', icon: MessageSquare },
       { name: 'Fine-Tuning', icon: Cpu },
-
-      // If you want these in this group later:
-      // { name: 'Pandas', icon: SiPandas },
-      // { name: 'NumPy', icon: ... },
-      // { name: 'Matplotlib', icon: ... },
-      // { name: 'Seaborn', icon: ... },
+      { name: 'Google Gemini', icon: SiGooglegemini },
+      { name: 'GPT Models', icon: BrainCircuit },
+      { name: 'RAG Pipelines', icon: Database },
+      { name: 'Hugging Face', icon: SiHuggingface },
+      { name: 'Prompt Engineering', icon: WandSparkles },
+      { name: 'LLM Evaluation', icon: Check },
     ],
   },
 
   {
-    title: 'Tools & DevOps',
+    title: 'Vector Databases & Retrieval',
     skills: [
+      { name: 'Pinecone', icon: Database },
+      { name: 'FAISS', icon: Database },
+      { name: 'Vertex AI Vector Search', icon: Database },
+      { name: 'RAG', icon: Network },
+    ],
+  },
+
+  {
+    title: 'Cloud & AI Infrastructure',
+    skills: [
+      { name: 'Google Cloud Platform', icon: SiGooglecloud },
+      { name: 'Vertex AI', icon: Cpu },
+      { name: 'Gemini Enterprise', icon: SiGooglegemini },
+      { name: 'Cloud Run', icon: Cloud },
+      { name: 'Vertex AI Agent Engine', icon: Server },
+      { name: 'Cloud DLP', icon: ShieldCheck },
+      { name: 'AWS Bedrock', icon: Cloud },
+      { name: 'AWS SageMaker', icon: Server },
+      { name: 'Amazon S3', icon: Database },
+      { name: 'Amazon ECR', icon: Box },
+    ],
+  },
+
+  {
+    title: 'Programming & Backend',
+    skills: [
+      { name: 'Python', icon: SiPython },
+      { name: 'FastAPI', icon: Server },
+      { name: 'Flask', icon: SiFlask },
+      { name: 'API Integration', icon: Network },
+      { name: 'Tool Integration', icon: Workflow },
+      { name: 'React.js', icon: SiReact },
+    ],
+  },
+
+  {
+    title: 'Databases & Data',
+    skills: [
+      { name: 'SQL', icon: Database },
+      { name: 'BigQuery', icon: Database },
+      { name: 'Spanner DB', icon: Database },
+      { name: 'MongoDB', icon: SiMongodb },
+    ],
+  },
+
+  {
+    title: 'MLOps & DevOps',
+    skills: [
+      { name: 'CI/CD', icon: Workflow },
+      { name: 'Model Monitoring', icon: Eye },
+      { name: 'Tracing', icon: Network },
+      { name: 'Fault-Tolerant Deployment', icon: ShieldCheck },
+      { name: 'Docker', icon: Box },
       { name: 'Git', icon: SiGit },
       { name: 'GitHub', icon: SiGithub },
-      { name: 'Docker', icon: Box },
-      { name: 'CI/CD', icon: Workflow },
     ],
   },
 ];
+
+/* =========================================================
+   APP
+   ========================================================= */
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -410,15 +416,44 @@ function App() {
     setMenuOpen(false);
   };
 
-  const submitContact = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  // const submitContact = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
 
-    setSent(true);
-    event.currentTarget.reset();
+  //   setSent(true);
+  //   event.currentTarget.reset();
+  // };
+  const submitContact = (event: FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const message = formData.get('message');
+
+  const subject = `Portfolio Contact from ${name}`;
+
+  const body = `Name: ${name}
+  Email: ${email}
+
+  Message:
+  ${message}`;
+
+    window.location.href =
+      `mailto:kumargubbala94@gmail.com?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+    form.reset();
   };
 
   return (
     <div className={dark ? 'app dark' : 'app'}>
+      {/* =====================================================
+          HEADER
+      ===================================================== */}
+
       <header className="site-header">
         <div className="header-inner">
           <button
@@ -426,8 +461,8 @@ function App() {
             onClick={() => scrollTo('home')}
             aria-label="Back to home"
           >
-            <span className="brand-mark">PS</span>
-            <span className="brand-text">Pulleti Sai Sirisha</span>
+            <span className="brand-mark">RK</span>
+            <span className="brand-text">Gubbala Roop Kumar</span>
           </button>
 
           <nav className={menuOpen ? 'nav-links open' : 'nav-links'}>
@@ -470,25 +505,38 @@ function App() {
       </header>
 
       <main>
-        <section id="home" className="hero section-grid">
+        {/* =====================================================
+            HERO
+        ===================================================== */}
+
+        {/* <section id="home" className="hero section-grid">
           <div className="hero-glow glow-one" />
           <div className="hero-glow glow-two" />
 
+          <div className="hero-content"> */}
+        <section id="home" className="hero section-grid">
+          <div className="hero-profile">
+            <img
+              src="/profilepic.jpeg"
+              alt="Gubbala Roop Kumar"
+            />
+          </div>
+
           <div className="hero-content">
             <span className="eyebrow">
-              <span className="status-dot" /> Available for AI ML opportunities
+              <span className="status-dot" /> AI/ML Engineer
             </span>
 
             <p className="hero-kicker">Hello! I am</p>
 
-            <h2 className="hero-name">Pulleti Sai Sirisha</h2>
+            <h2 className="hero-name">Gubbala Roop Kumar</h2>
 
             <p className="hero-copy">
               AI/ML Engineer focused on building and productionizing
               <strong className="ml"> Machine Learning</strong>,
               <strong className="genai"> Generative AI</strong>,
               <strong className="agentic"> Agentic AI</strong>, and
-              <strong className="rag"> RAG</strong> solutions across
+              <strong className="rag"> RAG</strong> systems across
               <strong className="cloud"> cloud environments</strong>.
             </p>
 
@@ -511,7 +559,7 @@ function App() {
 
             <div className="hero-buttons">
               <a
-                href="/Pulleti_Sai_Sirisha_Resume_AIML.pdf"
+                href="/Roop_Kumar_Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="resume-button"
@@ -536,26 +584,26 @@ function App() {
           </div>
 
           <div className="social-rail">
+            {/* Add your actual LinkedIn URL here */}
             <a
-              href="https://github.com/saisirisha1111/AgenticAI"
-              target="_blank"
-              rel="noreferrer"
+              href="#contact"
+              aria-label="LinkedIn"
+              onClick={() => scrollTo('contact')}
+            >
+              <FaLinkedin size={17} />
+            </a>
+
+            {/* GitHub URL was not present in the resume */}
+            <a
+              href="#contact"
               aria-label="GitHub"
+              onClick={() => scrollTo('contact')}
             >
               <SiGithub size={17} />
             </a>
 
             <a
-              href="https://www.linkedin.com/in/sai-sirisha-pulleti-08761b254"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <SiLinkerd size={17} />
-            </a>
-
-            <a
-              href="mailto:pulletisirisha2001@gmail.com"
+              href="mailto:kumargubbala94@gmail.com"
               aria-label="Email"
             >
               <Mail size={17} />
@@ -570,6 +618,10 @@ function App() {
           </button>
         </section>
 
+        {/* =====================================================
+            ABOUT
+        ===================================================== */}
+
         <section
           id="about"
           className="about section-grid section-padding"
@@ -578,9 +630,9 @@ function App() {
             <span className="eyebrow">Who I am</span>
 
             <h2>
-              Building useful AI,
+              Building production-ready AI,
               <br />
-              <span>not just clever demos.</span>
+              <span>not just prototypes.</span>
             </h2>
           </div>
 
@@ -590,94 +642,79 @@ function App() {
 
               <div className="portrait-image">
                 <img
-                  src="/profilepic.jpg"
-                  alt="Pulleti Sai Sirisha"
+                  src="/roop_ai2.png"
+                  alt="Gubbala Roop Kumar"
                 />
               </div>
             </div>
 
             <div className="about-copy">
               <p>
-                Hello! I am an{' '}
-                <strong>Associate Engineer in Emerging Technologies</strong>{' '}
-                at <strong>Virtusa Corporation, Hyderabad</strong>, with{' '}
-                <strong>3+ years of experience</strong> building
-                production-ready AI solutions across
-                <strong> Machine Learning, Generative AI, and Agentic AI</strong>
-                . My experience spans{' '}
+                I am an{' '}
+                <strong>AI/ML Engineer at Virtusa Consulting Services</strong>{' '}
+                with hands-on experience building and shipping
+                <strong> production-grade Agentic AI, RAG, and LLM applications</strong>.
+                My work combines traditional Machine Learning with Generative AI
+                across <strong>Google Cloud and AWS</strong>.
+              </p>
+
+              <p>
+                I specialize in designing and integrating{' '}
                 <strong>
-                  LLM applications, RAG pipelines, multi-agent architectures,
-                  and cloud-based AI deployments
+                  LLM applications, RAG pipelines, vector-database retrieval,
+                  multi-agent orchestration, and cloud AI services
                 </strong>
-                , with a strong focus on turning AI capabilities into reliable
-                enterprise solutions.
+                . I work primarily with Python and frameworks such as
+                <strong> LangChain, LangGraph, CrewAI, and Google ADK</strong>.
               </p>
 
               <p>
-                I work across the AI engineering lifecycle—from designing
-                intelligent workflows and integrating LLMs to deploying
-                scalable applications on
-                <strong> Google Cloud and AWS</strong>. I have built solutions
-                using
-                <strong>
-                  {' '}
-                  LangGraph, Google ADK, Vertex AI, FastAPI, Hugging Face,
-                  Docker, and Amazon SageMaker
-                </strong>
-                , combining AI models with production engineering, automation,
-                and cloud infrastructure.
+                My experience also includes production AI engineering practices
+                such as <strong>guardrails, evaluation loops, API and tool
+                integrations, CI/CD, monitoring, tracing, and
+                fault-tolerant deployment</strong>.
               </p>
 
               <p>
-                I also focus on building{' '}
-                <strong>secure and responsible AI applications</strong>, with
-                emphasis on protecting enterprise data, controlling access to
-                AI workflows, and ensuring that sensitive information is
-                handled appropriately throughout the AI pipeline.
-              </p>
-
-              <p>
-                I am driven by solving{' '}
-                <strong>complex, real-world engineering problems</strong>{' '}
-                through intelligent automation. Whether building enterprise
-                Agentic AI platforms, knowledge-grounded RAG systems,
-                multi-agent SDLC automation, or ML applications, my focus is
-                on creating{' '}
-                <strong>
-                  scalable, resilient, secure, and production-ready AI systems
-                </strong>{' '}
-                that deliver meaningful business impact.
+                I focus on taking AI systems from{' '}
+                <strong>data pipeline design through secure and monitored
+                production deployment</strong>, with an emphasis on reliable,
+                scalable, and enterprise-ready solutions.
               </p>
 
               <div className="details">
                 <div>
                   <small>Current role</small>
                   <b>Associate Engineer</b>
-                  <span>Virtusa Corporation</span>
+                  <span>Virtusa Consulting Services</span>
                 </div>
 
                 <div>
                   <small>Education</small>
-                  <b>B.Tech EEE</b>
+                  <b>B.Tech — CSE</b>
                   <span>2019 — 2023</span>
                 </div>
 
                 <div>
                   <small>Based in</small>
                   <b>Hyderabad, India</b>
-                  <span>pulletisirisha2001@gmail.com</span>
+                  <span>kumargubbala94@gmail.com</span>
                 </div>
               </div>
 
               <a
                 className="text-link"
-                href="mailto:pulletisirisha2001@gmail.com"
+                href="mailto:kumargubbala94@gmail.com"
               >
                 Get in touch <ArrowUpRight size={16} />
               </a>
             </div>
           </div>
         </section>
+
+        {/* =====================================================
+            SKILLS
+        ===================================================== */}
 
         <section
           id="skills"
@@ -691,12 +728,16 @@ function App() {
             </h2>
 
             <p>
-              My engineering toolkit across Generative AI, machine learning,
-              cloud operations, and software engineering.
+              My engineering toolkit across Agentic AI, Generative AI,
+              machine learning, cloud infrastructure, and software engineering.
             </p>
           </div>
 
-          <div className={`skills-grid ${showAllSkills ? 'show-all' : 'collapsed'}`}>
+          <div
+            className={`skills-grid ${
+              showAllSkills ? 'show-all' : 'collapsed'
+            }`}
+          >
             {skillGroups.map(({ title, skills }) => (
               <article className="skill-card" key={title}>
                 <h3>{title}</h3>
@@ -722,11 +763,18 @@ function App() {
 
             <ChevronDown
               size={17}
-              className={showAllSkills ? 'toggle-arrow rotated' : 'toggle-arrow'}
+              className={
+                showAllSkills
+                  ? 'toggle-arrow rotated'
+                  : 'toggle-arrow'
+              }
             />
           </button>
         </section>
 
+        {/* =====================================================
+            ACHIEVEMENTS
+        ===================================================== */}
 
         <section
           id="achievements"
@@ -740,8 +788,7 @@ function App() {
             </h2>
 
             <p>
-              Recognition for technical excellence, innovation, and impactful
-              AI engineering.
+              Recognition for technical innovation and AI engineering.
             </p>
           </div>
 
@@ -767,6 +814,11 @@ function App() {
             )}
           </div>
         </section>
+
+        {/* =====================================================
+            PROJECTS
+        ===================================================== */}
+
         <section
           id="projects"
           className="projects section-padding section-grid"
@@ -779,8 +831,8 @@ function App() {
             </h2>
 
             <p>
-              Production-focused AI and machine learning systems built for
-              measurable outcomes.
+              Production-focused AI and machine learning systems built
+              for real-world business problems.
             </p>
           </div>
 
@@ -790,8 +842,9 @@ function App() {
 
               return (
                 <article
-                  className={`project-card project-detail-card ${project.accent} ${isExpanded ? 'expanded' : ''
-                    }`}
+                  className={`project-card project-detail-card ${
+                    project.accent
+                  } ${isExpanded ? 'expanded' : ''}`}
                   key={project.title}
                 >
                   <div className="project-top">
@@ -810,7 +863,9 @@ function App() {
                     <strong>Role:</strong> {project.role}
                   </p>
 
-                  <p className="project-summary">{project.summary}</p>
+                  <p className="project-summary">
+                    {project.summary}
+                  </p>
 
                   <div className="tag-row">
                     {project.tags.map((tag) => (
@@ -823,7 +878,9 @@ function App() {
                       {project.metrics && (
                         <div className="project-metrics">
                           {project.metrics.map((metric) => (
-                            <strong key={metric}>{metric}</strong>
+                            <strong key={metric}>
+                              {metric}
+                            </strong>
                           ))}
                         </div>
                       )}
@@ -862,6 +919,10 @@ function App() {
           </div>
         </section>
 
+        {/* =====================================================
+            CERTIFICATIONS
+        ===================================================== */}
+
         <section
           id="certifications"
           className="credentials section-padding section-grid"
@@ -874,54 +935,66 @@ function App() {
             </h2>
 
             <p>
-              Professional credentials across cloud, artificial intelligence,
-              and machine learning.
+              Professional credentials across cloud, artificial
+              intelligence, and machine learning.
             </p>
           </div>
 
           <div
-            className={`certifications-grid ${showAllCertifications ? 'show-all' : 'collapsed'
-              }`}
+            className={`certifications-grid ${
+              showAllCertifications ? 'show-all' : 'collapsed'
+            }`}
           >
-            {certifications.map(({ title, issuer, url, icon: Icon }) => (
-              <article className="certification-card" key={title}>
-                <div className="certification-card-top">
-                  <div className="certification-icon">
-                    <Icon size={21} />
+            {certifications.map(
+              ({ title, issuer, url, icon: Icon }) => (
+                <article
+                  className="certification-card"
+                  key={title}
+                >
+                  <div className="certification-card-top">
+                    <div className="certification-icon">
+                      <Icon size={21} />
+                    </div>
+
+                    <span>{issuer}</span>
                   </div>
 
-                  <span>{issuer}</span>
-                </div>
+                  <h3>{title}</h3>
 
-                <h3>{title}</h3>
+                  {url && (
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Verify Badge <ExternalLink size={14} />
+                    </a>
+                  )}
 
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Verify Badge <ExternalLink size={14} />
-                </a>
+                  <div className="credential-status">
+                    <span>Credential</span>
 
-                <div className="credential-status">
-                  <span>Credential status</span>
-
-                  <strong>
-                    <i /> Active
-                  </strong>
-                </div>
-              </article>
-            ))}
+                    <strong>
+                      <i /> Certified
+                    </strong>
+                  </div>
+                </article>
+              )
+            )}
           </div>
 
           <button
             type="button"
             className="cards-toggle"
             onClick={() =>
-              setShowAllCertifications((value) => !value)
+              setShowAllCertifications(
+                (value) => !value
+              )
             }
           >
-            {showAllCertifications ? 'Show Less' : 'Show More'}
+            {showAllCertifications
+              ? 'Show Less'
+              : 'Show More'}
 
             <ChevronDown
               size={17}
@@ -933,6 +1006,10 @@ function App() {
             />
           </button>
         </section>
+
+        {/* =====================================================
+            CONTACT
+        ===================================================== */}
 
         <section
           id="contact"
@@ -949,29 +1026,35 @@ function App() {
               </h2>
 
               <p>
-                Whether you are exploring an AI idea or scaling an existing
-                platform, I would love to hear about it.
+                Whether you are exploring an AI idea or scaling
+                an existing platform, I would love to hear about it.
               </p>
 
               <div className="contact-links">
-                <a href="mailto:pulletisirisha2001@gmail.com">
-                  <Mail size={17} /> pulletisirisha2001@gmail.com
+                <a href="mailto:kumargubbala94@gmail.com">
+                  <Mail size={17} />
+                  kumargubbala94@gmail.com
                 </a>
 
+                {/* Add your actual LinkedIn URL when available */}
                 <a
-                  href="https://www.linkedin.com/in/sai-sirisha-pulleti-08761b254"
+                  href="https://www.linkedin.com/in/roopkumar-gubbala"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <SiLinkerd size={17} /> Connect on LinkedIn
+                  <FaLinkedin size={17} />
+                  Connect on LinkedIn
                 </a>
               </div>
             </div>
 
-            <form onSubmit={submitContact}>
+            {/* <form onSubmit={submitContact}>
               <label>
                 Name
-                <input required placeholder="Your name" />
+                <input
+                  required
+                  placeholder="Your name"
+                />
               </label>
 
               <label>
@@ -996,23 +1079,67 @@ function App() {
                 className="primary-button"
                 type="submit"
               >
-                {sent ? 'Message ready to send' : 'Send message'}{' '}
+                {sent
+                  ? 'Message ready to send'
+                  : 'Send message'}{' '}
                 <Send size={16} />
               </button>
 
               {sent && (
                 <small className="form-success">
-                  Thanks — your message is ready. Please use the email link
-                  to send it.
+                  Thanks — your message is ready. Please use
+                  the email link to send it.
                 </small>
               )}
+            </form> */}
+            <form onSubmit={submitContact}>
+              <label>
+                Name
+                <input
+                  required
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                />
+              </label>
+
+              <label>
+                Email
+                <input
+                  required
+                  type="email"
+                  name="email"
+                  placeholder="you@company.com"
+                />
+              </label>
+
+              <label>
+                Message
+                <textarea
+                  required
+                  name="message"
+                  placeholder="Share the role, opportunity, or message you'd like to discuss..."
+                  rows={4}
+                />
+              </label>
+
+              <button
+                className="primary-button"
+                type="submit"
+              >
+                Send message <Send size={16} />
+              </button>
             </form>
           </div>
         </section>
       </main>
 
+      {/* =====================================================
+          FOOTER
+      ===================================================== */}
+
       <footer>
-        <span>© 2026 Pulleti Sai Sirisha</span>
+        <span>© 2026 Gubbala Roop Kumar</span>
 
         <span>
           Designed & built with intention <Zap size={14} />
@@ -1023,9 +1150,19 @@ function App() {
         </button>
       </footer>
 
+      {/* =====================================================
+          PORTFOLIO ASSISTANT
+      ===================================================== */}
+
       <button
-        className={chatOpen ? 'chat-button active' : 'chat-button'}
-        onClick={() => setChatOpen((value) => !value)}
+        className={
+          chatOpen
+            ? 'chat-button active'
+            : 'chat-button'
+        }
+        onClick={() =>
+          setChatOpen((value) => !value)
+        }
         aria-label="Open assistant"
       >
         <Sparkles size={21} />
@@ -1036,16 +1173,18 @@ function App() {
           <b>Hi, I'm your portfolio guide.</b>
 
           <p>
-            Use the navigation to explore Sirisha's work and experience.
+            Explore Roop Kumar's AI/ML projects,
+            technical skills, certifications, and
+            professional experience.
           </p>
 
           <button
             onClick={() => {
               setChatOpen(false);
-              scrollTo('contact');
+              scrollTo('projects');
             }}
           >
-            Start a conversation <ArrowUpRight size={14} />
+            Explore my work <ArrowUpRight size={14} />
           </button>
         </div>
       )}
@@ -1054,5 +1193,3 @@ function App() {
 }
 
 export default App;
-
-

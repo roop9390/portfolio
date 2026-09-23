@@ -580,9 +580,8 @@ function App() {
           <div className="social-rail">
             {/* Add your actual LinkedIn URL here */}
             <a
-              href="#contact"
+              href="https://www.linkedin.com/in/roopkumar-gubbala"
               aria-label="LinkedIn"
-              onClick={() => scrollTo('contact')}
             >
               <FaLinkedin size={17} />
             </a>

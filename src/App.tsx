@@ -27,11 +27,9 @@ import {
   Brain,
   Eye,
   Workflow,
-  Bot,
   MessageSquare,
   Box,
   Trophy,
-  Award,
 } from 'lucide-react';
 
 import {
@@ -44,12 +42,8 @@ import {
   SiGooglecloud,
   SiPython,
   SiMongodb,
-  SiNextdotjs,
   SiReact,
-  SiStreamlit,
   SiFlask,
-  SiScikitlearn,
-  SiTensorflow,
   SiPytorch,
   SiGit,
 } from '@icons-pack/react-simple-icons';
@@ -403,7 +397,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [expandedProject, setExpandedProject] = useState<string | null>(null);
-  const [sent, setSent] = useState(false);
+  // const [sent, setSent] = useState(false);
 
   const [showAllSkills, setShowAllSkills] = useState(false);
   const [showAllCertifications, setShowAllCertifications] = useState(false);
@@ -704,7 +698,11 @@ function App() {
 
               <a
                 className="text-link"
-                href="mailto:kumargubbala94@gmail.com"
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo('contact');
+                }}
               >
                 Get in touch <ArrowUpRight size={16} />
               </a>

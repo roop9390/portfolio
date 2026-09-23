@@ -898,6 +898,44 @@ button { cursor: pointer; }
   transform: rotate(180deg);
 }
 
+.details {
+  margin-top: 36px;
+  padding: 28px 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.details > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.details small {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.details b {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.details span {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 /* Dark mode */
 .app.dark .project-detail-card {
   box-shadow:
